@@ -21,4 +21,7 @@ export const getFlickrImages = (searchText: string, rest?: any) =>
     params: { method: 'flickr.photos.search', text: searchText, ...rest },
   })
 
-export const getImage = (id: string, secret: string) => flickrApi.get('', {params: {method: 'flickr.photos.getInfo', photo_id: id, secret }})
+export const getImage = (id: string, secret: string) =>
+  flickrApi.get('', {
+    params: { method: 'flickr.photos.getInfo', photo_id: id, secret },
+  })

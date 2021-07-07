@@ -1,0 +1,9 @@
+.image-card {
+  display: flex;
+  background: #eee;
+
+  .photo-info {
+    padding: 30px;
+    flex: 1;
+  }
+}

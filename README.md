@@ -20,5 +20,5 @@ You will also see any lint errors in the console.
 It uses Canny Edge Detection on the image, you can find more about that method here https://docs.opencv.org/master/d7/de1/tutorial_js_canny.html
 
 ## This project uses Flickr Images API
-
-You can find more docs here https://www.flickr.com/services/api/flickr.photos.search.html
+Im using Debounce function for typing the text in input for searching to avoid too much requests.
+You can find more docs on API here https://www.flickr.com/services/api/flickr.photos.search.html

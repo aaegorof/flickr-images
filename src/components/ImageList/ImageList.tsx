@@ -4,12 +4,14 @@ import { CONSTRUCT_BASE_URL, getFlickrImages } from '../../api/flickr'
 import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 import './imageList.scss'
 import {useDebounce} from "react-use";
-import {Link} from 'react-router-dom'
+import {Link, useHistory, useLocation} from 'react-router-dom'
 
 type Props = {}
 
 const ImageList: React.FC<Props> = (props) => {
-  const [search, setSearch] = useState('')
+  const query = new URLSearchParams(useLocation().search)
+
+  const [search, setSearch] = useState(query.get('search') || '')
   const [debouncedSearch, setDebouncedSearch] = useState('')
 
   const [, cancel] = useDebounce(
@@ -20,22 +22,32 @@ const ImageList: React.FC<Props> = (props) => {
       [search]
   );
 
+  let history = useHistory();
+
+
+  useEffect(()=>{
+    if(search){
+      history.push('/images' + `?search=${search}`)
+    } else {
+      history.push('/images')
+    }
+  }, [search])
+
   const {
     status,
     data,
     error,
-    isFetching,
     isFetchingNextPage,
-    isFetchingPreviousPage,
     fetchNextPage,
-    fetchPreviousPage,
     hasNextPage,
-    hasPreviousPage,
   } = useInfiniteQuery(
     'imageList'+ debouncedSearch,
     async ({ pageParam = 0 }) => {
       const res = await getFlickrImages(debouncedSearch, { page: pageParam })
-      if(res.data.stat !=='ok') {throw new Error(res.data.message)}
+      if(res.data.stat !=='ok') {
+        throw new Error(res.data.message)
+        return res.data.message
+      }
       return res.data
     },
     {
@@ -63,8 +75,6 @@ const ImageList: React.FC<Props> = (props) => {
     enabled: hasNextPage,
   })
 
-  console.log(data, status, error)
-
   return (
     <>
       <p>
@@ -78,7 +88,7 @@ const ImageList: React.FC<Props> = (props) => {
             {page.photos?.photo.map((photo: any) => {
               const imgUrl = `${CONSTRUCT_BASE_URL}${photo.server}/${photo.id}_${photo.secret}.jpg`
               return (
-                <div className={'image-item'}>
+                <div className={'image-item'} key={photo.id}>
                   <Link to={`/edge/${photo.id}`}>
                     <img src={imgUrl} />
                   </Link>
