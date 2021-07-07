@@ -1,0 +1,22 @@
+.image-list {
+  display: flex;
+  flex-wrap: wrap;
+  .image-item {
+    max-width: 20%;
+    padding: 1rem;
+    img {
+      $size: 200px;
+      height: $size;
+      object-fit: cover;
+      width: 100%;
+    }
+  }
+}
+.load-more-btn {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 20px 0 ;
+}
