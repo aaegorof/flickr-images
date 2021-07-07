@@ -1,0 +1,26 @@
+@import "normalize";
+@import 'varibales';
+
+* {
+  box-sizing: border-box;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+h3 {
+  margin-top: 0.5rem;
+}
+.container {
+  max-width: $container;
+  margin-left: auto;
+  margin-right: auto;
+}
+input[type=text] {
+  padding: 0.4rem 1rem;
+  height: $input-height;
+  box-sizing: border-box;
+  label + & {
+    margin-left: 1rem;
+  }
+}
