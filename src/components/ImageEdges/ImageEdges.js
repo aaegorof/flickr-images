@@ -32,14 +32,14 @@ const ImageEdges = (props) => {
       //     ctx.drawImage(base_image, 0, 0)
       // }
       if (cv) {
-        console.log('### 3');
         const canvas = canvasRef.current
         // @ts-ignore
         const ctxOutput = canvas.getContext('2d')
-        let base_image = new Image()
+        const base_image = new Image()
         base_image.src = `${CONSTRUCT_BASE_URL}${imageInfo?.server}/${imageInfo?.id}_${imageInfo?.secret}.jpg`
-        let src = cv.imread(base_image)
-        let dst = new cv.Mat()
+        console.log('### 3', base_image.src);
+        const src = cv.imread(base_image)
+        const dst = new cv.Mat()
         cv.cvtColor(src, src, cv.COLOR_RGB2GRAY, 0)
         // You can try more different parameters
         cv.Canny(base_image, dst, 50, 100, 3, false)
@@ -71,7 +71,7 @@ const ImageEdges = (props) => {
       <div className={'image-edges-wrap'}>
           <h3><a onClick={() => history.goBack()} className={'go-back'}> Back to search results</a></h3>
           <div className="image-card">
-              <img src={imgUrl} />
+              <img src={imgUrl} id="cvImage" />
               {imageInfo && (
                   <div className="photo-info">
                       <p>Title: {imageInfo.title._content}</p>
