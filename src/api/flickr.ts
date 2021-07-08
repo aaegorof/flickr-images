@@ -1,9 +1,5 @@
 import axios from 'axios'
-
-const API_KEY = 'ef1f9d4f8ca80dada31c684364355282'
-const FLICKR_SIG = 'd7f57fa9e01a6a2d6ccd8597b8d2f86b'
-
-export const CONSTRUCT_BASE_URL = 'https://live.staticflickr.com/'
+import { API_KEY, FLICKR_SIG } from '../constants'
 
 export const flickrApi = axios.create({
   baseURL: 'https://www.flickr.com/services/rest',

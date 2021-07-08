@@ -3,19 +3,27 @@
 
 * {
   box-sizing: border-box;
+  color: $text-color;
 }
 img {
   max-width: 100%;
   height: auto;
 }
-h3 {
+h3, h4 {
   margin-top: 0.5rem;
 }
+
 .container {
   max-width: $container;
   margin-left: auto;
   margin-right: auto;
+  @media screen and (max-width: $container) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
+
+
 input[type=text] {
   padding: 0.4rem 1rem;
   height: $input-height;
@@ -27,4 +35,21 @@ input[type=text] {
 .go-back {
   color: $active;
   cursor: pointer;
+}
+
+.btn {
+  outline: none;
+  border: 1px solid;
+  padding: 0.5em 2em;
+  background: transparent;
+  border-radius: $radius;
+  font-weight: 400;
+  height: $input-height;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    border-color: $active;
+    color: $active;
+  }
 }

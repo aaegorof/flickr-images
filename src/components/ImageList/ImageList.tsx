@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useInfiniteQuery } from 'react-query'
-import { CONSTRUCT_BASE_URL, getFlickrImages } from '../../api/flickr'
+import { getFlickrImages } from '../../api/flickr'
+import { CONSTRUCT_BASE_URL } from '../../constants'
 import useIntersectionObserver from '../../hooks/useIntersectionObserver'
 import './imageList.scss'
-import {useDebounce} from "react-use";
-import {Link, useHistory, useLocation} from 'react-router-dom'
+import { useDebounce } from 'react-use'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 
 type Props = {}
 
@@ -15,18 +16,17 @@ const ImageList: React.FC<Props> = (props) => {
   const [debouncedSearch, setDebouncedSearch] = useState('')
 
   const [, cancel] = useDebounce(
-      () => {
-        setDebouncedSearch(search);
-      },
-      300,
-      [search]
-  );
+    () => {
+      setDebouncedSearch(search)
+    },
+    300,
+    [search]
+  )
 
-  let history = useHistory();
+  let history = useHistory()
 
-
-  useEffect(()=>{
-    if(search){
+  useEffect(() => {
+    if (search) {
       history.push('/images' + `?search=${search}`)
     } else {
       history.push('/images')
@@ -34,17 +34,15 @@ const ImageList: React.FC<Props> = (props) => {
   }, [search])
 
   const {
-    status,
     data,
-    error,
     isFetchingNextPage,
     fetchNextPage,
     hasNextPage,
   } = useInfiniteQuery(
-    'imageList'+ debouncedSearch,
+    'imageList' + debouncedSearch,
     async ({ pageParam = 0 }) => {
       const res = await getFlickrImages(debouncedSearch, { page: pageParam })
-      if(res.data.stat !=='ok') {
+      if (res.data.stat !== 'ok') {
         throw new Error(res.data.message)
         return res.data.message
       }
@@ -52,13 +50,13 @@ const ImageList: React.FC<Props> = (props) => {
     },
     {
       getPreviousPageParam: (firstPage) => {
-        if(!firstPage?.photos) return
+        if (!firstPage?.photos) return
         const { page } = firstPage?.photos
         const hasPreviousPage = page < 2
         return hasPreviousPage ? page - 1 : undefined
       },
       getNextPageParam: (firstPage) => {
-        if(!firstPage?.photos) return
+        if (!firstPage?.photos) return
         const { page, perpage, total } = firstPage?.photos
         const hasNextPage = page * perpage < total
         return hasNextPage ? page + 1 : undefined
@@ -79,39 +77,49 @@ const ImageList: React.FC<Props> = (props) => {
     <>
       <p>
         <label htmlFor="search-images">Search flickr API</label>
-        <input onChange={(e) => setSearch(e.target.value)} value={search} placeholder={'Type to search...'} id={'search-images'} type={'text'}/>
+        <input
+          onChange={(e) => setSearch(e.target.value)}
+          value={search}
+          placeholder={'Type to search...'}
+          id={'search-images'}
+          type={'text'}
+        />
       </p>
 
-      {data?.pages && <div className={'image-list-wrap'}>
-        {data?.pages.map((page) => (
-          <div className={'image-list'} key={page.id}>
-            {page.photos?.photo.map((photo: any) => {
-              const imgUrl = `${CONSTRUCT_BASE_URL}${photo.server}/${photo.id}_${photo.secret}.jpg`
-              return (
-                <div className={'image-item'} key={photo.id}>
-                  <Link to={`/edge/${photo.id}`}>
-                    <img src={imgUrl} />
-                  </Link>
-                  <h3>{photo.title}</h3>
-                </div>
-              )
-            })}
-          </div>
-
-        ))}
-        <button
+      {data?.pages && (
+        <div className={'image-list-wrap'}>
+          {data?.pages.map((page) => (
+            <div className={'image-list'} key={page.id}>
+              {page.photos?.photo.map((photo: any) => {
+                const imgUrl = `${CONSTRUCT_BASE_URL}${photo.server}/${photo.id}_${photo.secret}.jpg`
+                return (
+                  <div className={'image-item'} key={photo.id}>
+                    <Link to={`/edge/${photo.id}`}>
+                      <img src={imgUrl} />
+                    </Link>
+                    <h4>{photo.title}</h4>
+                  </div>
+                )
+              })}
+            </div>
+          ))}
+          <button className={'to-top'} onClick={() => {
+            window.scrollTo({top: 0, behavior: "smooth"})
+          }}>Top</button>
+          <button
             ref={loadMoreButtonRef}
             onClick={() => fetchNextPage()}
             disabled={!hasNextPage || isFetchingNextPage}
             className={'load-more-btn'}
-        >
-          {isFetchingNextPage
+          >
+            {isFetchingNextPage
               ? 'Loading more...'
               : hasNextPage
-                  ? 'Load Newer'
-                  : 'Nothing more to load'}
-        </button>
-      </div>}
+              ? 'Load Newer'
+              : 'Nothing more to load'}
+          </button>
+        </div>
+      )}
     </>
   )
 }
