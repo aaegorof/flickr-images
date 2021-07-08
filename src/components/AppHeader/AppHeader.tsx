@@ -11,9 +11,9 @@ const AppHeader: React.FC<Props> = (props) => {
     <div className={'app-header-wrap'}>
       <div className="container">
         <Link to={'/'}>
-          <img src={logo} alt="logo" title={'logo'} />
+          <img src={logo} className={'logo'} alt="logo" title={'logo'} />
         </Link>
-        <a href={AUTHOR_LINK} target={'_blank'} className="author">
+        <a href={AUTHOR_LINK} target={'_blank'} rel="noreferrer" className="author">
           Made by {AUTHOR_NAME}
         </a>
       </div>

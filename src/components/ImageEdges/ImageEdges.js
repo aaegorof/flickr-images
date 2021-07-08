@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, MutableRefObject } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import { getImage } from '../../api/flickr'
 import { CONSTRUCT_BASE_URL } from '../../constants'
@@ -91,12 +91,17 @@ const ImageEdges = ({ cv }) => {
         </div>
         {imageInfo && (
           <div className="photo-info">
-            <p>Title: {imageInfo.title._content}</p>
             <p>
-              Posted date:{' '}
+              <strong>Title: </strong> {imageInfo.title._content}
+            </p>
+            <p>
+              <strong>Posted date: </strong>
               {new Date(imageInfo.dates.posted * 1000).toLocaleString()}
             </p>
-            <p>Owner: {imageInfo.owner.username}</p>
+            <p>
+              <strong>Owner: </strong>
+              {imageInfo.owner.username}
+            </p>
 
             <p style={{ marginTop: 50 }}>
               You can switch the edge detection

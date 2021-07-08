@@ -1,7 +1,7 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 import ImageList from './components/ImageList/ImageList'
 import AppHeader from './components/AppHeader/AppHeader'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ImageEdges from './components/ImageEdges/ImageEdges'
 
 import './styles/common.scss'

@@ -6,6 +6,9 @@
   .image-item {
     max-width: 20%;
     padding: 1rem;
+    h4 {
+      word-break: break-all;
+    }
     img {
       $size: 200px;
       height: $size;
@@ -21,6 +24,11 @@
   @media screen and (max-width: $md) {
     .image-item {
       max-width: 50%;
+    }
+  }
+  @media screen and (max-width: $sm) {
+    .image-item {
+      max-width: 100%;
     }
   }
 }
@@ -46,4 +54,11 @@
   border-radius: 50%;
   border: 1px solid;
   cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 1;
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+    cursor: none;
+  }
 }
