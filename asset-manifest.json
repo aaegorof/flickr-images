@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/flickr-images/static/css/main.47e14dd9.chunk.css",
-    "main.js": "/flickr-images/static/js/main.43253aeb.chunk.js",
-    "main.js.map": "/flickr-images/static/js/main.43253aeb.chunk.js.map",
-    "runtime-main.js": "/flickr-images/static/js/runtime-main.99ef6f6c.js",
-    "runtime-main.js.map": "/flickr-images/static/js/runtime-main.99ef6f6c.js.map",
-    "static/js/2.98037c00.chunk.js": "/flickr-images/static/js/2.98037c00.chunk.js",
-    "static/js/2.98037c00.chunk.js.map": "/flickr-images/static/js/2.98037c00.chunk.js.map",
-    "static/js/3.cdd1b552.chunk.js": "/flickr-images/static/js/3.cdd1b552.chunk.js",
-    "static/js/3.cdd1b552.chunk.js.map": "/flickr-images/static/js/3.cdd1b552.chunk.js.map",
-    "index.html": "/flickr-images/index.html",
-    "static/css/main.47e14dd9.chunk.css.map": "/flickr-images/static/css/main.47e14dd9.chunk.css.map",
-    "static/js/2.98037c00.chunk.js.LICENSE.txt": "/flickr-images/static/js/2.98037c00.chunk.js.LICENSE.txt",
-    "static/media/flickr_logo_dots.e5cc7d38.svg": "/flickr-images/static/media/flickr_logo_dots.e5cc7d38.svg"
+    "main.css": "./static/css/main.47e14dd9.chunk.css",
+    "main.js": "./static/js/main.43253aeb.chunk.js",
+    "main.js.map": "./static/js/main.43253aeb.chunk.js.map",
+    "runtime-main.js": "./static/js/runtime-main.9773b947.js",
+    "runtime-main.js.map": "./static/js/runtime-main.9773b947.js.map",
+    "static/js/2.98037c00.chunk.js": "./static/js/2.98037c00.chunk.js",
+    "static/js/2.98037c00.chunk.js.map": "./static/js/2.98037c00.chunk.js.map",
+    "static/js/3.cdd1b552.chunk.js": "./static/js/3.cdd1b552.chunk.js",
+    "static/js/3.cdd1b552.chunk.js.map": "./static/js/3.cdd1b552.chunk.js.map",
+    "index.html": "./index.html",
+    "static/css/main.47e14dd9.chunk.css.map": "./static/css/main.47e14dd9.chunk.css.map",
+    "static/js/2.98037c00.chunk.js.LICENSE.txt": "./static/js/2.98037c00.chunk.js.LICENSE.txt",
+    "static/media/flickr_logo_dots.e5cc7d38.svg": "./static/media/flickr_logo_dots.e5cc7d38.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.99ef6f6c.js",
+    "static/js/runtime-main.9773b947.js",
     "static/js/2.98037c00.chunk.js",
     "static/css/main.47e14dd9.chunk.css",
     "static/js/main.43253aeb.chunk.js"
